@@ -2,17 +2,17 @@
 ***
 
 ## Table of Contents
-1. Simple Frontend-only CRUD Application
-  1.1 [Building](#building)
-2. Technologies
-  2.1 [App](#technologies)
-  2.2 [Login page "/login"](#login-page)
-  2.3 [Register page "/register"](#register-page)
-  2.4 [Home (all entires) page "/" or "/all/{page?}"](#home-page)
-  2.5 [Create entry page "/create"](#create-entry-page)
-  2.6 [Edit entry page "/{entryId}"](#edit-entry-page)
-3. [Miscellaneous](#miscellaneous)
-  3.1 [P.S.](#p.s.)
+- Simple Frontend-only CRUD Application
+  - [Building](#building)
+- Technologies
+  - [App](#technologies)
+  - [Login page "/login"](#login-page)
+  - [Register page "/register"](#register-page)
+  - [Home (all entires) page "/" or "/all/{page?}"](#home-page)
+  - [Create entry page "/create"](#create-entry-page)
+  - [Edit entry page "/{entryId}"](#edit-entry-page)
+- [Miscellaneous](#miscellaneous)
+  - [P.S.](#p.s.)
 
 ### Building
 - no gulp, grunt etc.
