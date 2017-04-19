@@ -67,7 +67,7 @@
   - all fields are required
   - an _"email"_ field must be valid email
   - _"password"_ === _"rePassowrd"_
-  - "dateOfBirth" is a valid and not expired date in above described format
+  - _"dateOfBirth"_ is a valid and not expired date in above described format
   - show error messages under the inputs
 - page is not available for the logged in user
 
