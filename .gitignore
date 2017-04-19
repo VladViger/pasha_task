@@ -1,0 +1,7 @@
+# untracked files:
+*.log
+
+# untracked folders:
+/_BAK
+/node_modules
+/public
