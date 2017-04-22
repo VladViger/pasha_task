@@ -1,17 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
+import createHistory from 'history/createBrowserHistory';
 
-import reducer from './reducers';
-import Router from './routes/Router';
+import rootReducer from './reducers';
+import rootRouter from './routes';
 
-const store = createStore(reducer);
+const history = createHistory();
+const middleware = routerMiddleware(history);
+const store = createStore(rootReducer, applyMiddleware(middleware));
 
 const renderApp = () => {
 	ReactDOM.render(
 		<Provider store={store}>
-			<Router />
+			<ConnectedRouter history={history}>
+				{ rootRouter }
+			</ConnectedRouter>
 		</Provider>,
 		document.getElementById('root')
 	);
@@ -20,5 +26,5 @@ const renderApp = () => {
 renderApp();
 
 if (module.hot) {
-	module.hot.accept('./routes/Router', renderApp);
+	module.hot.accept('./routes', renderApp);
 }

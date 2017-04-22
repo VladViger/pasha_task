@@ -12,7 +12,6 @@
 
 ### Questions:
 - "create entry page" - where is the pass?
-- "dateOfBirth" - is date of registration?
 
 ***
 
@@ -38,9 +37,8 @@
 
 ```javascript
 {
-	isLogin: boolean,
 	currentUserId: string || null,
-	users: [
+	entries: [
 		{
 			id: string,
 			name: string,
