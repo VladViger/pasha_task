@@ -23,10 +23,12 @@
 		id: {
 			name: string,
 			email: string,
-			dateOfBirth: number,
-			password: string
+			dateOfBirth: string
 		},
 		anotherUserId: {...}
+	},
+	usersPass: {
+		id: string
 	}
 }
 ```
@@ -43,7 +45,7 @@
 			id: string,
 			name: string,
 			email: string,
-			dateOfBirth: number
+			dateOfBirth: string
 		},
 		{...}
 	]

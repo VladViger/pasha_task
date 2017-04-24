@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { deleteEntry } from '../actions';
+import { receiveEntries, deleteEntry } from '../actions';
 import EntriesList from '../components/EntriesList';
 
 const mapStateToProps = (state) => ({
@@ -7,7 +7,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-	handleDelEntry: deleteEntry
+	handleDelEntry: deleteEntry,
+	initEntriesList: receiveEntries
 };
 
 const VisibleEntries = connect(

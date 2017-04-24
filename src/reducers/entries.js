@@ -13,7 +13,7 @@ function createEntrie(action) {
 function entries(state = [], action) {
 	switch (action.type) {
 		case RECEIVE_ENTRIES:
-			return [ ...action.entries ];
+			return (state.length) ? state : [ ...action.entries ];
 		case ADD_ENTRY:
 			return [
 				...state,

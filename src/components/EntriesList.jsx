@@ -2,6 +2,10 @@ import React from 'react';
 import Entry from './Entry';
 
 class EntriesList extends React.Component {
+	componentDidMount() {
+		this.props.initEntriesList(); // перенести на стр. авторизации
+	}
+
 	render() {
 		return (
 			<table>
