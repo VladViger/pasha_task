@@ -1,13 +1,12 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import Entry from './Entry';
 
 class EntriesList extends React.Component {
-	componentDidMount() {
-		this.props.initEntriesList(); // перенести на стр. авторизации
-	}
-
 	render() {
-		return (
+		return (!this.props.loggedIn) ? (
+			<Redirect to="/login" />
+		) : (
 			<table>
 				<thead>
 					<tr>

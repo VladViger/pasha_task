@@ -12,6 +12,15 @@ export const DEL_ENTRY = 'DEL_ENTRY';
 /*
 -- action creators --
 */
+export function logIn(email, pass) {
+	let id = LS_API.authorization(email, pass) || null;
+	let action = {
+		type: LOG_IN,
+		id
+	};
+	return action;
+}
+
 export function receiveEntries() {
 	let entries = LS_API.getItems();
 	let action = {
@@ -46,14 +55,6 @@ export function editEntry(id, name, email, dateOfBirth) {
 export function deleteEntry(id) {
 	let action = {
 		type: DEL_ENTRY,
-		id
-	};
-	return action;
-}
-
-export function logIn(id) {
-	let action = {
-		type: LOG_IN,
 		id
 	};
 	return action;

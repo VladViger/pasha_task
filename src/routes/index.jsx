@@ -1,19 +1,22 @@
 import React from 'react';
-import { Route, Link, Switch } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 
 import App from '../components/App';
-
 import VisibleEntries from '../containers/VisibleEntries';
+import VisibleLogInPanel from '../containers/VisibleLogInPanel';
+import RegisterPanel from '../containers/RegisterPanel';
 import EntryCreator from '../containers/EntryCreator';
-import LogInPanel from '../components/LogInPanel';
-import RegisterPanel from '../components/RegisterPanel';
+
+/*
+	*see <Redirect> path in components render function
+*/
 
 const rootRouter = (
 	<App>
 		<Route exact path="/" component={VisibleEntries} />
-		<Route path="/create" component={EntryCreator} />
-		<Route path="/login" component={LogInPanel} />
+		<Route path="/login" component={VisibleLogInPanel} />
 		<Route path="/register" component={RegisterPanel} />
+		<Route path="/create" component={EntryCreator} />
 
 		<hr />
 		<ul>
