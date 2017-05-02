@@ -11,7 +11,7 @@
 - [ ]
 
 ### Questions:
-- "create entry page" - where is the pass?
+- will this work with promise: function handleSubmit in LoginPanel.jsx ?
 
 ***
 
@@ -40,6 +40,7 @@
 ```javascript
 {
 	currentUserId: string || null,
+	allowNewEntry: bool,
 	entries: [
 		{
 			id: string,

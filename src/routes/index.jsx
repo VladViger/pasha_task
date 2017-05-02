@@ -2,9 +2,9 @@ import React from 'react';
 import { Route, Link } from 'react-router-dom';
 
 import App from '../components/App';
-import VisibleEntries from '../containers/VisibleEntries';
-import VisibleLogInPanel from '../containers/VisibleLogInPanel';
-import RegisterPanel from '../containers/RegisterPanel';
+import Entries from '../containers/VisibleEntries';
+import LogInPanel from '../containers/VisibleLogInPanel';
+import RegisterPanel from '../containers/VisibleRegisterPanel';
 import EntryCreator from '../containers/EntryCreator';
 
 /*
@@ -13,8 +13,8 @@ import EntryCreator from '../containers/EntryCreator';
 
 const rootRouter = (
 	<App>
-		<Route exact path="/" component={VisibleEntries} />
-		<Route path="/login" component={VisibleLogInPanel} />
+		<Route exact path="/" component={Entries} />
+		<Route path="/login" component={LogInPanel} />
 		<Route path="/register" component={RegisterPanel} />
 		<Route path="/create" component={EntryCreator} />
 

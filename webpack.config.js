@@ -67,8 +67,8 @@ let config = {
 							loader: 'less-loader'
 						}
 					]
-				}),
-				include: resolve(__dirname, 'src')
+				})
+				//include: resolve(__dirname, 'src', 'node_modules')
 			},
 			{
 				test:   /\.(ttf|eot|woff|woff2)$/,

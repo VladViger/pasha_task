@@ -13,7 +13,7 @@ class LogInPanel extends React.Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		let email = e.target.email.value;
+		let email = e.target.email.value.toLowerCase();
 		let pass = e.target.pass.value;
 
 		let validationError = validate.single(email, {presence: true, email: true});
@@ -22,8 +22,8 @@ class LogInPanel extends React.Component {
 			return;
 		}
 		
-		let action = this.props.handleLogIn(email, pass);
-		if (!action.id) {
+		this.props.handleLogIn(email, pass);
+		if (!this.props.loggedIn) {
 			this.setState({ passNoValid: true });
 			return;
 		}

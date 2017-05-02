@@ -5,9 +5,11 @@ import * as LS_API from './localStorageAPI';
 */
 export const LOG_IN = 'LOG_IN';
 export const RECEIVE_ENTRIES = 'RECEIVE_ENTRIES';
+export const CHECK_ENTRY_EXISTENCE = 'CHECK_ENTRY_EXISTENCE';
 export const ADD_ENTRY = 'ADD_ENTRY';
 export const EDIT_ENTRY = 'EDIT_ENTRY';
 export const DEL_ENTRY = 'DEL_ENTRY';
+export const REGISTRATION = 'REGISTRATION';
 
 /*
 -- action creators --
@@ -29,6 +31,17 @@ export function receiveEntries() {
 	};
 	return action;
 }
+
+export function checkEntryExistence(email) {
+	let action = {
+		type: CHECK_ENTRY_EXISTENCE,
+		existence: false
+	};
+	if ( LS_API.isItemExist(email) ) action.existence = true;
+	return action;
+}
+
+
 
 export function addEntry(name, email, dateOfBirth) {
 	let action = {
@@ -59,3 +72,24 @@ export function deleteEntry(id) {
 	};
 	return action;
 }
+
+/*
+
+export function registration(name, email, dateOfBirth, pass) {
+	let newEntry = {
+		name,
+		email,
+		dateOfBirth,
+		pass,
+		id: 'id' + Math.random().toString(36).substring(2)
+	};
+	console.log(newEntry);
+	LS_API.registration(newEntry);
+	let action = {
+		type: REGISTRATION,
+		...newEntry
+	}
+	return action;
+}
+
+*/
