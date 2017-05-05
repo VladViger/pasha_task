@@ -1,5 +1,6 @@
 'use strict';
 
+const options  = require('yargs').argv;
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
 const rimraf = require('rimraf');
@@ -9,6 +10,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const WriteFilePlugin   = require('write-file-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
 let babelLoaderOptions = {
@@ -102,7 +104,7 @@ let config = {
 		},
 		new ExtractTextPlugin({
 			filename: 'css/[name].css',
-			disable: !!process.env.HOT,
+			disable: options.hot,
 			allChunks: true
 		}),
 		new webpack.LoaderOptionsPlugin({
@@ -132,7 +134,7 @@ let config = {
 	devServer: {
 		host: 'localhost',
 		port: 3000,
-		hot: true,
+		// hot: options.hot,
 		inline: true,
 		contentBase: resolve(__dirname, 'public'),
 		historyApiFallback: true,
@@ -140,16 +142,18 @@ let config = {
 	}
 };
 
-if (NODE_ENV == 'production') {
+config.devtool = 'source-map'; // make sourcemaps as separated files
+
+if (NODE_ENV === 'production') {
 	config.plugins.push( new webpack.optimize.UglifyJsPlugin({ sourceMap: true }) );
-	config.devtool = 'source-map';
 }
 
-if (process.env.HOT) {
+if (options.hot) {
 	babelLoaderOptions.plugins.push( 'react-hot-loader/babel' );
 	config.entry.unshift( 'react-hot-loader/patch' );
-	config.plugins.push( new webpack.HotModuleReplacementPlugin() );
+	// config.plugins.push( new webpack.HotModuleReplacementPlugin() );
 	config.plugins.push( new webpack.NamedModulesPlugin() );
+	config.plugins.push( new WriteFilePlugin({ log: false }) ); // write ./public directory on disk forcely
 }
 
 module.exports = config;

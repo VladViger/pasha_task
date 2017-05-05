@@ -7,10 +7,15 @@ import createHistory from 'history/createBrowserHistory';
 
 import rootReducer from './reducers';
 import rootRouter from './routes';
+import LocalStorageHelper from './helpers/LocalStorageHelper';
+import ValidationHelper   from './helpers/ValidationHelper';
 
 const history = createHistory();
 const middleware = routerMiddleware(history);
 const store = createStore(rootReducer, applyMiddleware(middleware));
+
+LocalStorageHelper.init();
+ValidationHelper.init();
 
 const renderApp = () => {
 	ReactDOM.render(
@@ -25,6 +30,6 @@ const renderApp = () => {
 
 renderApp();
 
-if (module.hot) {
-	module.hot.accept('./routes', renderApp);
-}
+// if (module.hot) {
+// 	module.hot.accept('./routes', renderApp);
+// }
