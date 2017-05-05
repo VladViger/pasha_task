@@ -1,34 +1,43 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import validate from 'validate.js';
+
+import ValidationHelper from '../helpers/ValidationHelper';
 
 class LogInPanel extends React.Component {
+
+	_validationRules = {
+		email: {
+		  presence:   { message: () => '^Email is required' },
+		  userExists: { message: () => '^Such user is not exist' }
+		},
+		password: {
+		  presence: { message: () => '^Password is required' }
+		}
+	};
+
 	constructor(props) {
 		super(props);
 		this.state = {
-			emailNoValid: false,
-			passNoValid: false
+			errors: {}
 		};
 	}
 
 	handleSubmit(e) {
 		e.preventDefault();
-		let email = e.target.email.value.toLowerCase();
-		let pass = e.target.pass.value;
+		const email    = e.target.email.value.toLowerCase();
+		const password = e.target.pass.value;
 
-		let validationError = validate.single(email, {presence: true, email: true});
-		if (validationError) {
-			this.setState({ emailNoValid: true });
-			return;
+		const validationErrors = ValidationHelper.validate(
+			{ email, password },
+			this._validationRules
+		);
+		if (validationErrors) {
+			this.setState({
+				errors: { ...validationErrors }
+			});
+		} else {
+            this.props.initEntriesList();
 		}
-		
-		this.props.handleLogIn(email, pass);
-		if (!this.props.loggedIn) {
-			this.setState({ passNoValid: true });
-			return;
-		}
-
-		this.props.initEntriesList();
 	}
 
 	render() {
@@ -36,7 +45,7 @@ class LogInPanel extends React.Component {
 			<Redirect to="/" />
 		) : (
 			<div className="login-panel">
-				<form action="#" onSubmit={ (e) => this.handleSubmit(e) }>
+				<form action="#" onSubmit={ (e) => this.handleSubmit(e) } noValidate="novalidate">
 					<label htmlFor="login-email">Email ID:</label>
 					<input
 						type="text"
@@ -45,7 +54,7 @@ class LogInPanel extends React.Component {
 						autoFocus
 						required
 					/>
-					{ (this.state.emailNoValid) ? (<div>Email incorrect!</div>) : false }
+					{ this.state.errors.email ? <div>{this.state.errors.email}</div> : null }
 					<br />
 					<label htmlFor="login-pass">Password:</label>
 					<input
@@ -54,7 +63,7 @@ class LogInPanel extends React.Component {
 						name="pass"
 						required
 					/>
-					{ (this.state.passNoValid) ? (<div>Password incorrect!</div>) : false }
+					{ this.state.errors.password ? <div>{this.state.errors.password}</div> : false }
 					<br />
 					<button type="submit">Log In</button>
 				</form>
