@@ -1,15 +1,14 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { checkEntryExistence } from '../actions';
+import { addEntry } from '../actions';
 import RegisterPanel from '../components/RegisterPanel';
 
 const mapStateToProps = (state) => ({
-	loggedIn: !!state.currentUserId,
-	allowNewEntry: state.allowNewEntry
+	loggedIn: !!state.currentUserId
 });
 
 const mapDispatchToProps = {
-	checkExistence: checkEntryExistence
+	handleRegister: addEntry
 };
 
 let VisibleRegisterPanel = withRouter(

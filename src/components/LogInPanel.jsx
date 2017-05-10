@@ -1,37 +1,44 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import validate from 'validate.js';
+
+import ValidationHelper from '../helpers/ValidationHelper';
 
 class LogInPanel extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			emailNoValid: false,
-			passNoValid: false
+		this._validationRules = {
+			email: {
+				presence: true,
+				email: true
+			},
+			pass: {
+				presence: true
+			}
 		};
+		this.state = {
+			errors: {}
+		};
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.loggedIn) this.props.initEntriesList();
 	}
 
 	handleSubmit(e) {
 		e.preventDefault();
-		let email = e.target.email.value.toLowerCase();
-		let pass = e.target.pass.value;
+		const email = e.target.email.value.toLowerCase();
+		const pass = e.target.pass.value;
 
-		let validationError = validate.single(email, {presence: true, email: true});
-		if (validationError) {
-			this.setState({ emailNoValid: true });
-			return;
-		}
-		
-		this.props.handleLogIn(email, pass);
-		if (!this.props.loggedIn) {
-			this.setState({ passNoValid: true });
-			return;
-		}
+		const validationErrors = ValidationHelper.validate({email, pass}, this._validationRules);
 
-		this.props.initEntriesList();
+		if (!validationErrors) this.props.handleLogIn(email, pass);
+		validationErrors ?
+			this.setState({ errors: validationErrors }) : this.setState({ errors: {} });
 	}
 
 	render() {
+		const { email: emailError, pass: passError } = this.state.errors;
+
 		return (this.props.loggedIn) ? (
 			<Redirect to="/" />
 		) : (
@@ -43,18 +50,16 @@ class LogInPanel extends React.Component {
 						id="login-email"
 						name="email"
 						autoFocus
-						required
 					/>
-					{ (this.state.emailNoValid) ? (<div>Email incorrect!</div>) : false }
+					{ emailError ? <div>{emailError}</div> : false }
 					<br />
 					<label htmlFor="login-pass">Password:</label>
 					<input
 						type="password"
 						id="login-pass"
 						name="pass"
-						required
 					/>
-					{ (this.state.passNoValid) ? (<div>Password incorrect!</div>) : false }
+					{ passError ? (<div>{passError}</div>) : false }
 					<br />
 					<button type="submit">Log In</button>
 				</form>

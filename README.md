@@ -40,7 +40,6 @@
 ```javascript
 {
 	currentUserId: string || null,
-	allowNewEntry: bool,
 	entries: [
 		{
 			id: string,

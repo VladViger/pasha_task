@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 import { logIn, receiveEntries } from '../actions';
 import LogInPanel from '../components/LogInPanel';
 
-
 const mapStateToProps = (state) => ({
 	loggedIn: !!state.currentUserId
 });
