@@ -2,17 +2,17 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import { addEntry } from '../actions';
-import RegisterPanel from '../components/RegisterPanel';
+import EntryCreator from '../components/EntryCreator';
 
 const mapDispatchToProps = {
-	handleRegister: addEntry
+	handleCreate: addEntry
 };
 
-let VisibleRegisterPanel = withRouter(
+let VisibleEntryCreator = withRouter(
 	connect(
 		null,
 		mapDispatchToProps
-	)(RegisterPanel)
+	)(EntryCreator)
 );
 
-export default VisibleRegisterPanel;
+export default VisibleEntryCreator;

@@ -6,7 +6,7 @@ import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 
 import rootReducer from './reducers';
-import rootRouter from './routes';
+import App from './containers/App';
 
 const history = createHistory();
 const middleware = routerMiddleware(history);
@@ -16,7 +16,7 @@ const renderApp = () => {
 	ReactDOM.render(
 		<Provider store={store}>
 			<ConnectedRouter history={history}>
-				{ rootRouter }
+				<App />
 			</ConnectedRouter>
 		</Provider>,
 		document.getElementById('root')
@@ -26,5 +26,5 @@ const renderApp = () => {
 renderApp();
 
 if (module.hot) {
-	module.hot.accept('./routes', renderApp);
+	module.hot.accept('./containers/App', renderApp);
 }

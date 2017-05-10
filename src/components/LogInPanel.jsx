@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 
 import ValidationHelper from '../helpers/ValidationHelper';
 
@@ -20,10 +19,6 @@ class LogInPanel extends React.Component {
 		};
 	}
 
-	componentWillReceiveProps(nextProps) {
-		if (nextProps.loggedIn) this.props.initEntriesList();
-	}
-
 	handleSubmit(e) {
 		e.preventDefault();
 		const email = e.target.email.value.toLowerCase();
@@ -39,9 +34,7 @@ class LogInPanel extends React.Component {
 	render() {
 		const { email: emailError, pass: passError } = this.state.errors;
 
-		return (this.props.loggedIn) ? (
-			<Redirect to="/" />
-		) : (
+		return (
 			<div className="login-panel">
 				<form action="#" onSubmit={ (e) => this.handleSubmit(e) }>
 					<label htmlFor="login-email">Email ID:</label>

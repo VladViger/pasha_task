@@ -1,58 +1,21 @@
 import React from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
+import ClassCreateEntry from './Class.CreateEntry';
 import ValidationHelper from '../helpers/ValidationHelper';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-class RegisterPanel extends React.Component {
+class RegisterPanel extends ClassCreateEntry {
 	constructor(props) {
 		super(props);
-		this._validationRules = {
-			email: {
-				presence: true,
-				email: true,
-				userExists: true
-			},
-			name: {
-				presence: true
-			},
-			dateOfBirth: {
-				// DatePicker return valid 'moment' object or null
-				presence: true
-			},
-			pass: {
-				presence: true,
-				length: { minimum: 4 }
-			},
-			repass: {
-				presence: true,
-				equality: {
-					attribute: 'pass',
-					message: "^Confirm password is not equal to password"
-				}
-			}
-		};
-		this._dateFormat = 'MM/DD/YYYY';
 		this.state = {
 			date: null,
 			errors: {},
 			isSent: false
 		};
-	}
-
-	handleChangeDate(date) {
-		this.setState({ date: date });
-	}
-
-	getDateString() {
-		let date = '';
-		if (this.state.date) {
-			date = moment(this.state.date).format(this._dateFormat);
-		}
-		return date;
 	}
 
 	handleSubmit(e) {
@@ -84,10 +47,7 @@ class RegisterPanel extends React.Component {
 			repass: confirmPassError
 		} = this.state.errors;
 
-		return (this.props.loggedIn) ? (
-			<Redirect to="/" />
-
-		) : this.state.isSent ? (
+		return (this.state.isSent) ? (
 			<div>
 				Your registration request has been sent.<br />
 				Now you can <Link to="/login">login</Link> to your account
@@ -101,6 +61,7 @@ class RegisterPanel extends React.Component {
 						type="text"
 						id="reg-name"
 						name="name"
+						autoFocus
 					/>
 					{ nameError ? <div>{nameError}</div> : false }
 					<br />
@@ -109,12 +70,12 @@ class RegisterPanel extends React.Component {
 						type="text"
 						id="reg-email"
 						name="email"
-						autoFocus
 					/>
 					{ emailError ? <div>{emailError}</div> : false }
 					<br />
 					<label htmlFor="reg-date">Date of birth:</label>
 					<DatePicker
+						id="reg-date"
 						dateFormat={this._dateFormat}
 						selected={this.state.date}
 						locale="en-gb"

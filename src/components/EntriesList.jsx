@@ -1,12 +1,9 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import Entry from './Entry';
 
 class EntriesList extends React.Component {
 	render() {
-		return (!this.props.loggedIn) ? (
-			<Redirect to="/login" />
-		) : (
+		return (
 			<table>
 				<thead>
 					<tr>
