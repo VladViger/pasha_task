@@ -27,6 +27,7 @@ class EntriesList extends React.Component {
 							key={item.id}
 							{...item}
 							onDelEntry={() => this.props.handleDelEntry(item.id)}
+							onStartEdit={() => this.props.history.push(item.id)}
 						/>
 					)}
 				</tbody>

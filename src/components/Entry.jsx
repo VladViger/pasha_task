@@ -4,7 +4,7 @@ class Entry extends React.Component {
 	render() {
 		let {name, email, dateOfBirth, onClick} = this.props;
 		return (
-			<tr>
+			<tr onDoubleClick={this.props.onStartEdit}>
 				<td>{this.props.name}</td>
 				<td>{this.props.email}</td>
 				<td>{this.props.dateOfBirth}</td>

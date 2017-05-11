@@ -5,6 +5,7 @@ import Entries from '../containers/VisibleEntries';
 import LogInPanel from '../containers/VisibleLogInPanel';
 import RegisterPanel from '../containers/VisibleRegisterPanel';
 import EntryCreator from '../containers/VisibleEntryCreator';
+import EntryEditor from '../containers/VisibleEntryEditor';
 
 
 const routes = (isLoggedIn) => (
@@ -25,6 +26,8 @@ const routes = (isLoggedIn) => (
 		<Route path="/create" render={() => (
 			!isLoggedIn ? <Redirect to="/login" /> : <EntryCreator />
 		)} />
+
+		<Route path="/:id" component={EntryEditor} />
 
 	</div>
 );
