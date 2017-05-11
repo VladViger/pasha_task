@@ -60,6 +60,18 @@ class LocalStorageHelper {
 		if (pass) newData.usersPass[item.id] = pass;
 		LocalStorageHelper._setData(newData);
 	}
+
+	static deleteItem(id) {
+		let newData = LocalStorageHelper._data;
+		if (!newData) return;
+		if (newData.usersData) delete newData.usersData[id];
+		if (newData.usersPass) delete newData.usersPass[id];
+		LocalStorageHelper._setData(newData);
+	}
+
+	static replaceItem(id, newItem) {
+
+	}
 }
 
 export default LocalStorageHelper;

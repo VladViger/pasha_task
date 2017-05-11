@@ -44,8 +44,14 @@ export function addEntry(newEntryData) {
 	return action;
 }
 
-
-
+export function deleteEntry(id) {
+	LS_API.deleteItem(id);
+	let action = {
+		type: DEL_ENTRY,
+		id
+	};
+	return action;
+}
 
 export function editEntry(id, name, email, dateOfBirth) {
 	let action = {
@@ -54,14 +60,6 @@ export function editEntry(id, name, email, dateOfBirth) {
 		name,
 		email,
 		dateOfBirth
-	};
-	return action;
-}
-
-export function deleteEntry(id) {
-	let action = {
-		type: DEL_ENTRY,
-		id
 	};
 	return action;
 }

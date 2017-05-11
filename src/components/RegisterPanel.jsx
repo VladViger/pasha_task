@@ -11,6 +11,31 @@ import 'react-datepicker/dist/react-datepicker.css';
 class RegisterPanel extends ClassCreateEntry {
 	constructor(props) {
 		super(props);
+		this._validationRules = {
+			email: {
+				presence: true,
+				email: true,
+				userExists: true
+			},
+			name: {
+				presence: true
+			},
+			dateOfBirth: {
+				// DatePicker return valid 'moment' object or null
+				presence: true
+			},
+			pass: {
+				presence: true,
+				length: { minimum: 4 }
+			},
+			repass: {
+				presence: true,
+				equality: {
+					attribute: 'pass',
+					message: "^Confirm password is not equal to password"
+				}
+			}
+		};
 		this.state = {
 			date: null,
 			errors: {},
