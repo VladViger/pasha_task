@@ -15,6 +15,7 @@ class ClassCreateEntry extends React.Component {
 			},
 			dateOfBirth: {
 				// DatePicker return valid 'moment' object or null
+				// add this: "^Select allowed date from the list"
 				presence: true
 			}
 		};
@@ -35,6 +36,11 @@ class ClassCreateEntry extends React.Component {
 			date = moment(this.state.date).format(this._dateFormat);
 		}
 		return date;
+	}
+
+	comeBack() {
+		// let another events finish
+		setTimeout(() => { this.props.history.push('/') }, 0);
 	}
 }
 

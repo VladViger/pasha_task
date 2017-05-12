@@ -12,18 +12,6 @@ class RegisterPanel extends ClassCreateEntry {
 	constructor(props) {
 		super(props);
 		this._validationRules = {
-			email: {
-				presence: true,
-				email: true,
-				userExists: true
-			},
-			name: {
-				presence: true
-			},
-			dateOfBirth: {
-				// DatePicker return valid 'moment' object or null
-				presence: true
-			},
 			pass: {
 				presence: true,
 				length: { minimum: 4 }
@@ -34,7 +22,8 @@ class RegisterPanel extends ClassCreateEntry {
 					attribute: 'pass',
 					message: "^Confirm password is not equal to password"
 				}
-			}
+			},
+			...this._validationRules
 		};
 		this.state = {
 			date: null,

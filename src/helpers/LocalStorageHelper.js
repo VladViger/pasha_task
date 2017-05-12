@@ -13,9 +13,16 @@ class LocalStorageHelper {
 		window.localStorage.setItem(address, JSON.stringify(newData));
 	}
 
+	static init() {
+		if ( !LocalStorageHelper._data ) {
+			const newStorage = { usersData: {}, usersPass: {} };
+			LocalStorageHelper._setData(newStorage);
+		}
+	}
+
 	static getItems() {
 		let data = LocalStorageHelper._data;
-		if (data && data.usersData) data = data.usersData;
+		data = data.usersData;
 
 		let items = [];
 		for (let key in data) {
@@ -29,8 +36,6 @@ class LocalStorageHelper {
 
 	static authorization(email, pass) {
 		let data = LocalStorageHelper._data;
-		if (!data || !data.usersData || !data.usersPass) return;
-
 		let id;
 		for (let key in data.usersData) {
 			if (data.usersData[key].email === email) {
@@ -44,8 +49,6 @@ class LocalStorageHelper {
 
 	static isItemExist(email) {
 		let data = LocalStorageHelper._data;
-		if (!data || !data.usersData) return false;
-
 		for (let key in data.usersData) {
 			if (data.usersData[key].email === email) {
 				return true;
@@ -54,10 +57,15 @@ class LocalStorageHelper {
 		return false;
 	}
 
-	static addItem(item, pass) {
-		let newData = LocalStorageHelper._data || {usersData: {}, usersPass: {}};
-		newData.usersData[item.id] = item;
-		if (pass) newData.usersPass[item.id] = pass;
+	static addItem(data, pass) {
+		let newData = LocalStorageHelper._data;
+		newData.usersData[data.id] = {
+			name: data.name,
+			email: data.email,
+			dateOfBirth: data.dateOfBirth
+		};
+
+		if (pass) newData.usersPass[data.id] = pass;
 		LocalStorageHelper._setData(newData);
 	}
 
@@ -68,10 +76,7 @@ class LocalStorageHelper {
 		if (newData.usersPass) delete newData.usersPass[id];
 		LocalStorageHelper._setData(newData);
 	}
-
-	static replaceItem(id, newItem) {
-
-	}
 }
 
+LocalStorageHelper.init();
 export default LocalStorageHelper;

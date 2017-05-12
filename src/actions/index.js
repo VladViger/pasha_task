@@ -44,22 +44,20 @@ export function addEntry(newEntryData) {
 	return action;
 }
 
+export function editEntry(newEntryData) {
+	LS_API.addItem(newEntryData);
+	let action = {
+		type: EDIT_ENTRY,
+		...newEntryData
+	};
+	return action;
+}
+
 export function deleteEntry(id) {
 	LS_API.deleteItem(id);
 	let action = {
 		type: DEL_ENTRY,
 		id
-	};
-	return action;
-}
-
-export function editEntry(id, name, email, dateOfBirth) {
-	let action = {
-		type: EDIT_ENTRY,
-		id,
-		name,
-		email,
-		dateOfBirth
 	};
 	return action;
 }

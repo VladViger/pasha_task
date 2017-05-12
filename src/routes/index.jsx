@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 
 import Entries from '../containers/VisibleEntries';
 import LogInPanel from '../containers/VisibleLogInPanel';
@@ -10,25 +10,23 @@ import EntryEditor from '../containers/VisibleEntryEditor';
 
 const routes = (isLoggedIn) => (
 	<div className="content">
-
-		<Route exact path="/" render={() => (
-			!isLoggedIn ? <Redirect to="/login" /> : <Entries />
-		)} />
-
-		<Route path="/login" render={() => (
-			!!isLoggedIn ? <Redirect to="/" /> : <LogInPanel />
-		)} />
-
-		<Route path="/register" render={() => (
-			!!isLoggedIn ? <Redirect to="/" /> : <RegisterPanel />
-		)} />
-
-		<Route path="/create" render={() => (
-			!isLoggedIn ? <Redirect to="/login" /> : <EntryCreator />
-		)} />
-
-		<Route path="/:id" component={EntryEditor} />
-
+		{isLoggedIn ? (
+			<Switch>
+				<Route exact path="/" component={Entries} />
+				<Route exact path="/create" component={EntryCreator} />
+				<Route exact path="/:id" component={EntryEditor} />
+				<Route exact path="/pages/:page" component={Entries} />
+				<Redirect to="/" />
+				<Route component={Entries} />
+			</Switch>
+		) : (
+			<Switch>
+				<Route exact path="/login" component={LogInPanel} />
+				<Route exact path="/register" component={RegisterPanel} />
+				<Redirect to="/login" />
+				<Route component={LogInPanel} />
+			</Switch>
+		)}
 	</div>
 );
 
