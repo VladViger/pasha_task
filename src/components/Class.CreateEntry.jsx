@@ -40,7 +40,7 @@ class ClassCreateEntry extends React.Component {
 
 	comeBack() {
 		// let another events finish
-		setTimeout(() => { this.props.history.push('/') }, 0);
+		setTimeout(() => { this.props.history.goBack() }, 0);
 	}
 }
 

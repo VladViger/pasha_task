@@ -10,7 +10,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 class EntryEditor extends ClassCreateEntry {
 	componentWillMount() {
 		if (!this.props.id) {
-			this.comeBack();
+			this.props.history.push('/');
 			return;
 		}
 		let currentDate = moment(this.props.dateOfBirth);
@@ -98,7 +98,7 @@ class EntryEditor extends ClassCreateEntry {
 					<br />
 					<button type="submit">Apply changes</button>
 					<br />
-					<button onClick={ () => this.comeBack() }>Come Back</button>
+					<button type="button" onClick={ () => this.comeBack() }>Come Back</button>
 			</form>
 		);
 	}

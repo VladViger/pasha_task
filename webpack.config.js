@@ -71,9 +71,9 @@ let config = {
 				//include: resolve(__dirname, 'src', 'node_modules')
 			},
 			{
-				test:   /\.(ttf|eot|woff|woff2)$/,
+				test:   /\.(ttf|eot|woff|woff2|svg)$/,
 				loader: 'file-loader',
-				include: resolve(__dirname, 'src'),
+				//include: resolve(__dirname, 'src'),
 				options: {
 					name: '[path][name].[ext]'
 				}

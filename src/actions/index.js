@@ -4,6 +4,7 @@ import LS_API from '../helpers/LocalStorageHelper';
 -- action types --
 */
 export const LOG_IN = 'LOG_IN';
+export const LOG_OUT = 'LOG_OUT';
 export const RECEIVE_ENTRIES = 'RECEIVE_ENTRIES';
 export const ADD_ENTRY = 'ADD_ENTRY';
 export const EDIT_ENTRY = 'EDIT_ENTRY';
@@ -17,6 +18,13 @@ export function logIn(email, pass) {
 	const action = {
 		type: LOG_IN,
 		id
+	};
+	return action;
+}
+
+export function logOut() {
+	const action = {
+		type: LOG_OUT
 	};
 	return action;
 }

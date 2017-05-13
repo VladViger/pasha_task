@@ -5,17 +5,12 @@
 [Task specification](./SPECIFICATION.md)
 
 ### Current Task List:
-- [ ]
-
-### Do later:
 - add more vilidation rules in data of Birthd field
-- add logOut action
-- add header component with current users' name
 - to fix warning from moment date formatting in EditEntry component
-- add 'push to num page' in fn 'comeback' in EntryEditor component
-
-### Questions:
-- 
+- add styles, build HTML in components
+- add in 'logOut confirm' modal window
+- configure webpack
+- maybe delete index.ejs
 
 ***
 

@@ -1,7 +1,7 @@
 import React from 'react';
+import Pagination from 'react-js-pagination';
 
 import Entry from './Entry';
-import EntriesPagination from './EntriesPagination';
 
 class EntriesList extends React.Component {
 	constructor() {
@@ -9,12 +9,12 @@ class EntriesList extends React.Component {
 		this.itemsOnPage = 5;
 	}
 
-	getPagesNum() {
-		return Math.ceil(this.props.entries.length / this.itemsOnPage);
+	handlePageChanged(newPage) {
+		this.props.history.push(`/pages/${newPage}`);
 	}
 
 	render() {
-		const currentPage = this.props.match.params.page || 1;
+		const currentPage = +this.props.match.params.page || 1;
 		const showEntries = this.props.entries.filter((item, i) => 
 			i < currentPage*this.itemsOnPage && i > (currentPage - 1)*this.itemsOnPage
 		);
@@ -43,15 +43,16 @@ class EntriesList extends React.Component {
 								key={item.id}
 								{...item}
 								onDelEntry={() => this.props.handleDelEntry(item.id)}
-								onStartEdit={() => this.props.history.push(item.id)}
+								onStartEdit={() => this.props.history.push(`/${item.id}`)}
 							/>
 						)}
 					</tbody>
 				</table>
-				<EntriesPagination
-					totalPages={this.getPagesNum()}
-					currentPage={currentPage}
-					push={this.props.history.push}
+				<Pagination
+					activePage={currentPage}
+					itemsCountPerPage={this.itemsOnPage}
+					totalItemsCount={this.props.entries.length}
+					onChange={(newPage) => this.handlePageChanged(newPage)}
 				/>
 			</div>
 		);

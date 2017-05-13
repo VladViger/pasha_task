@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 
 import routes from '../routes';
-import { receiveEntries } from '../actions';
+import { receiveEntries, logOut } from '../actions';
+import HeaderApp from '../components/HeaderApp';
+import FooterApp from '../components/FooterApp';
+
+import 'bootstrap/dist/css/bootstrap.css';
 
 class App extends React.Component {
 	componentWillReceiveProps(nextProps) {
@@ -12,10 +16,20 @@ class App extends React.Component {
 		}
 	}
 
+	handleLogOut() {
+		if (!this.props.loggedIn) return;
+		confirm('Are you sure?') ? this.props.logOut() : false;
+	}
+
 	render() {
 		return (
 			<div className="layout">
+				<HeaderApp
+					userName={this.props.userName}
+					handleLogOut={() => this.handleLogOut()}
+				/>
 				{ routes(this.props.loggedIn) }
+				<FooterApp />
 				<hr />
 				<ul>
 					<li><Link to="/">index</Link></li>
@@ -31,11 +45,16 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	loggedIn: !!state.currentUserId
+	loggedIn: !!state.currentUserId,
+	userName: function() {
+		const currentUser = state.entries.filter( item => item.id === state.currentUserId )[0];
+		return currentUser ? currentUser.name : 'Guest';
+	}()
 });
 
 const mapDispatchToProps = {
-	initEntriesList: receiveEntries
+	initEntriesList: receiveEntries,
+	logOut: logOut
 };
 
 let VisibleApp = withRouter(
