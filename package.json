@@ -44,6 +44,7 @@
     "bootstrap": "^3.3.7",
     "moment": "^2.18.1",
     "react": "^15.5.4",
+    "react-confirm-bootstrap": "^3.1.4",
     "react-datepicker": "^0.46.0",
     "react-dom": "^15.5.4",
     "react-js-pagination": "^2.1.0",

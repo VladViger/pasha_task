@@ -5,8 +5,6 @@ import moment from 'moment';
 import ClassCreateEntry from './Class.CreateEntry';
 import ValidationHelper from '../helpers/ValidationHelper';
 
-import 'react-datepicker/dist/react-datepicker.css';
-
 class EntryCreator extends ClassCreateEntry {
 	handleSubmit(e) {
 		e.preventDefault();
@@ -34,25 +32,34 @@ class EntryCreator extends ClassCreateEntry {
 		} = this.state.errors;
 
 		return (
-			<form action="#" onSubmit={ (e) => this.handleSubmit(e) }>
-					<label htmlFor="name">Name:</label>
+			<form className="entry-creator" action="#" onSubmit={ (e) => this.handleSubmit(e) }>
+				<div className={'form-group' + (nameError ? ' has-error' : '')}>
+					<label htmlFor="name" className="control-label">Name:</label>
 					<input
 						type="text"
 						id="name"
 						name="name"
+						className="form-control"
 						autoFocus
 					/>
-					{ nameError ? <div>{nameError}</div> : false }
-					<br />
-					<label htmlFor="email">Email:</label>
+					{ nameError ?
+						<span className="label label-danger">{nameError}</span> : false 
+					}
+				</div>
+				<div className={'form-group' + (emailError ? ' has-error' : '')}>
+					<label htmlFor="email" className="control-label">Email:</label>
 					<input
 						type="text"
 						id="email"
 						name="email"
+						className="form-control"
 					/>
-					{ emailError ? <div>{emailError}</div> : false }
-					<br />
-					<label htmlFor="date">Date of birth:</label>
+					{ emailError ?
+						<span className="label label-danger">{emailError}</span> : false 
+					}
+				</div>
+				<div className={'form-group datepicker-custom-wraper' + (dateError ? ' has-error' : '')}>
+					<label htmlFor="date" className="control-label">Date of birth:</label>
 					<DatePicker
 						id="date"
 						dateFormat={this._dateFormat}
@@ -64,10 +71,14 @@ class EntryCreator extends ClassCreateEntry {
 						showYearDropdown
 						dropdownMode="select"
 						placeholderText="Click to select a date"
+						className="form-control"
+						autoComplete="off"
 					/>
-					{ dateError ? <div>{dateError}</div> : false }
-					<br />
-					<button type="submit">Create Entry</button>
+					{ dateError ?
+						<span className="label label-danger">{dateError}</span> : false 
+					}
+				</div>
+				<button className="btn btn-default" type="submit">Create Entry</button>
 			</form>
 		);
 	}

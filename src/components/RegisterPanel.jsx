@@ -6,8 +6,6 @@ import moment from 'moment';
 import ClassCreateEntry from './Class.CreateEntry';
 import ValidationHelper from '../helpers/ValidationHelper';
 
-import 'react-datepicker/dist/react-datepicker.css';
-
 class RegisterPanel extends ClassCreateEntry {
 	constructor(props) {
 		super(props);
@@ -62,32 +60,41 @@ class RegisterPanel extends ClassCreateEntry {
 		} = this.state.errors;
 
 		return (this.state.isSent) ? (
-			<div>
+			<p className="alert alert-success register-success">
+				<span className="glyphicon glyphicon glyphicon-ok"></span>
 				Your registration request has been sent.<br />
 				Now you can <Link to="/login">login</Link> to your account
-			</div>
+			</p>
 
 		) : (
-			<div className="register-panel">
-				<form action="#" onSubmit={ (e) => this.handleSubmit(e) }>
-					<label htmlFor="reg-name">Name:</label>
+			<form className="register-panel" action="#" onSubmit={ (e) => this.handleSubmit(e) }>
+				<div className={'form-group' + (nameError ? ' has-error' : '')}>
+					<label htmlFor="reg-name" className="control-label">Name:</label>
 					<input
 						type="text"
 						id="reg-name"
 						name="name"
+						className="form-control"
 						autoFocus
 					/>
-					{ nameError ? <div>{nameError}</div> : false }
-					<br />
-					<label htmlFor="reg-email">Email:</label>
+					{ nameError ?
+						<span className="label label-danger">{nameError}</span> : false 
+					}
+				</div>
+				<div className={'form-group' + (emailError ? ' has-error' : '')}>
+					<label htmlFor="reg-email" className="control-label">Email:</label>
 					<input
 						type="text"
 						id="reg-email"
 						name="email"
+						className="form-control"
 					/>
-					{ emailError ? <div>{emailError}</div> : false }
-					<br />
-					<label htmlFor="reg-date">Date of birth:</label>
+					{ emailError ?
+						<span className="label label-danger">{emailError}</span> : false 
+					}
+				</div>
+				<div className={'form-group datepicker-custom-wraper' + (dateError ? ' has-error' : '')}>
+					<label htmlFor="reg-date" className="control-label">Date of birth:</label>
 					<DatePicker
 						id="reg-date"
 						dateFormat={this._dateFormat}
@@ -99,28 +106,39 @@ class RegisterPanel extends ClassCreateEntry {
 						showYearDropdown
 						dropdownMode="select"
 						placeholderText="Click to select a date"
+						className="form-control"
+						autoComplete="off"
 					/>
-					{ dateError ? <div>{dateError}</div> : false }
-					<br />
-					<label htmlFor="reg-pass">Password:</label>
+					{ dateError ?
+						<span className="label label-danger">{dateError}</span> : false 
+					}
+				</div>
+				<div className={'form-group' + (passError ? ' has-error' : '')}>
+					<label htmlFor="reg-pass" className="control-label">Password:</label>
 					<input
 						type="password"
 						id="reg-pass"
 						name="pass"
+						className="form-control"
 					/>
-					{ passError ? <div>{passError}</div> : false }
-					<br />
-					<label htmlFor="reg-repass">Confirm password:</label>
+					{ passError ?
+						<span className="label label-danger">{passError}</span> : false 
+					}
+				</div>
+				<div className={'form-group' + (confirmPassError ? ' has-error' : '')}>
+					<label htmlFor="reg-repass" className="control-label">Confirm password:</label>
 					<input
 						type="password"
 						id="reg-repass"
 						name="repass"
+						className="form-control"
 					/>
-					{ confirmPassError ? <div>{confirmPassError}</div> : false }
-					<br />
-					<button type="submit">Register</button>
-				</form>
-			</div>
+					{ confirmPassError ?
+						<span className="label label-danger">{confirmPassError}</span> : false 
+					}
+				</div>
+				<button className="btn btn-default" type="submit">Register</button>
+			</form>
 		);
 	}
 }

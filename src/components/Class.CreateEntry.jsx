@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
 
 class ClassCreateEntry extends React.Component {
 	constructor(props) {

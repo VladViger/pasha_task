@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i');
+
+@min-form-width: 360px;
+@alert-font-size: 16px;
+
+/*
+-- Layout styles --
+*/
+html {
+	// bootstrap style conflict with datepicker
+	font-size: 16px;
+}
+
+body {
+	background: linear-gradient(to bottom, #FFF 0%, #F6F6F6 47%, #EDEDED 100%);
+	font-family: 'Roboto', sans-serif;
+}
+
+.layout {
+	min-height: 100vh;
+	max-width: 780px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.datepicker-custom-wraper > [class*="datepicker"] {
+	display: block;
+}
+
+/*
+-- Header --
+*/
+.header-app {
+	.user-name {
+		font-weight: bold;
+		text-transform: capitalize;
+	}
+}
+
+/*
+-- Login Panel --
+*/
+.login-panel {
+	min-width: 280px;
+
+	button {
+		min-width: 80px;
+	}
+}
+
+/*
+-- Register Panel --
+*/
+.register-panel {
+	min-width: @min-form-width;
+}
+
+.register-success {
+	position: relative;
+	font-size: @alert-font-size;
+	padding-left: 36px;
+
+	.glyphicon {
+		position: absolute;
+		left: 10px;
+		top: 15px;
+		font-size: 18px;
+	}
+}
+
+/*
+-- Main table --
+*/
+.main-table-wrapper {
+	text-align: center;
+}
+
+.main-table-info {
+	font-size: @alert-font-size;
+}
+
+.main-table {
+	min-width: 560px;
+	background-color: #FFF;
+	border-radius: 4px;
+	border-style: hidden;
+	box-shadow: 0 0 0 1px #DDD;
+	text-align: left;
+
+	tr td:last-child {
+		text-align: center;
+	}
+
+	.remove-entry {
+		font-size: 10px;
+		vertical-align: middle;
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+}
+
+/*
+-- Entry creator --
+*/
+.entry-creator {
+	min-width: @min-form-width;
+}
+
+/*
+-- Entry editor --
+*/
+.entry-editor {
+	min-width: @min-form-width;
+}
+
+/*
+-- Footer --
+*/
+.footer-app {
+	line-height: 24px;
+}

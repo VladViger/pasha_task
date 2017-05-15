@@ -8,8 +8,16 @@ import HeaderApp from '../components/HeaderApp';
 import FooterApp from '../components/FooterApp';
 
 import 'bootstrap/dist/css/bootstrap.css';
+import '../styles/App.less';
 
 class App extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			isConfirm: true
+		}
+	}
+
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.loggedIn && !this.props.loggedIn) {
 			this.props.initEntriesList();
@@ -18,7 +26,7 @@ class App extends React.Component {
 
 	handleLogOut() {
 		if (!this.props.loggedIn) return;
-		confirm('Are you sure?') ? this.props.logOut() : false;
+		this.props.logOut();
 	}
 
 	render() {
@@ -30,15 +38,6 @@ class App extends React.Component {
 				/>
 				{ routes(this.props.loggedIn) }
 				<FooterApp />
-				<hr />
-				<ul>
-					<li><Link to="/">index</Link></li>
-					<li><Link to="/login">login</Link></li>
-					<li><Link to="/register">register</Link></li>
-					<li><Link to="/create">create</Link></li>
-					<li><Link to="/notfoundid">not found id</Link></li>
-					<li><Link to="/notfound/path">not found path</Link></li>
-				</ul>
 			</div>
 		);
 	}
@@ -48,7 +47,7 @@ const mapStateToProps = (state) => ({
 	loggedIn: !!state.currentUserId,
 	userName: function() {
 		const currentUser = state.entries.filter( item => item.id === state.currentUserId )[0];
-		return currentUser ? currentUser.name : 'Guest';
+		return currentUser ? currentUser.name : null;
 	}()
 });
 

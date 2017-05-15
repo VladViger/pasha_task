@@ -35,28 +35,34 @@ class LogInPanel extends React.Component {
 		const { email: emailError, pass: passError } = this.state.errors;
 
 		return (
-			<div className="login-panel">
-				<form action="#" onSubmit={ (e) => this.handleSubmit(e) }>
-					<label htmlFor="login-email">Email ID:</label>
+			<form className="login-panel" action="#" onSubmit={ (e) => this.handleSubmit(e) }>
+				<div className={'form-group' + (emailError ? ' has-error' : '')}>
+					<label htmlFor="login-email" className="control-label">Email ID:</label>
 					<input
 						type="text"
 						id="login-email"
 						name="email"
+						className="form-control"
 						autoFocus
 					/>
-					{ emailError ? <div>{emailError}</div> : false }
-					<br />
-					<label htmlFor="login-pass">Password:</label>
+					{ emailError ?
+						<span className="label label-danger">{emailError}</span> : false 
+					}
+				</div>
+				<div className={'form-group' + (passError ? ' has-error' : '')}>
+					<label htmlFor="login-pass" className="control-label">Password:</label>
 					<input
 						type="password"
 						id="login-pass"
 						name="pass"
+						className="form-control"
 					/>
-					{ passError ? (<div>{passError}</div>) : false }
-					<br />
-					<button type="submit">Log In</button>
-				</form>
-			</div>
+					{ passError ?
+						<span className="label label-danger">{passError}</span> : false 
+					}
+				</div>
+				<button className="btn btn-default" type="submit">Log In</button>
+			</form>
 		);
 	}
 }

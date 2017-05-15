@@ -8,8 +8,8 @@ class Entry extends React.Component {
 				<td>{this.props.name}</td>
 				<td>{this.props.email}</td>
 				<td>{this.props.dateOfBirth}</td>
-				<td>
-					<div onClick={this.props.onDelEntry}>X</div>
+				<td className="remove-entry" onClick={this.props.onDelEntry} title="delete entry">
+					<span className="glyphicon glyphicon-remove"></span>
 				</td>
 			</tr>
 		);

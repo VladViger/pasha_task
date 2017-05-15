@@ -7,10 +7,11 @@
 ### Current Task List:
 - add more vilidation rules in data of Birthd field
 - to fix warning from moment date formatting in EditEntry component
-- add styles, build HTML in components
-- add in 'logOut confirm' modal window
 - configure webpack
 - maybe delete index.ejs
+
+### Questions:
+- jQuery & React?
 
 ***
 

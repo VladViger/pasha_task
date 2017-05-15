@@ -5,8 +5,6 @@ import moment from 'moment';
 import ClassCreateEntry from './Class.CreateEntry';
 import ValidationHelper from '../helpers/ValidationHelper';
 
-import 'react-datepicker/dist/react-datepicker.css';
-
 class EntryEditor extends ClassCreateEntry {
 	componentWillMount() {
 		if (!this.props.id) {
@@ -61,27 +59,36 @@ class EntryEditor extends ClassCreateEntry {
 		} = this.state.errors;
 
 		return (
-			<form action="#" onSubmit={ (e) => this.handleSubmit(e) }>
-					<label htmlFor="edit-name">Name:</label>
+			<form className="entry-editor" action="#" onSubmit={ (e) => this.handleSubmit(e) }>
+				<div className={'form-group' + (nameError ? ' has-error' : '')}>
+					<label htmlFor="edit-name" className="control-label">Name:</label>
 					<input
 						type="text"
 						defaultValue={this.props.name}
 						id="edit-name"
 						name="name"
+						className="form-control"
 						autoFocus
 					/>
-					{ nameError ? <div>{nameError}</div> : false }
-					<br />
-					<label htmlFor="edit-email">Email:</label>
+					{ nameError ?
+						<span className="label label-danger">{nameError}</span> : false 
+					}
+				</div>
+				<div className={'form-group' + (emailError ? ' has-error' : '')}>
+					<label htmlFor="edit-email" className="control-label">Email:</label>
 					<input
 						type="text"
 						defaultValue={this.props.email}
 						id="edit-email"
+						className="form-control"
 						name="email"
 					/>
-					{ emailError ? <div>{emailError}</div> : false }
-					<br />
-					<label htmlFor="edit-date">Date of birth:</label>
+					{ emailError ?
+						<span className="label label-danger">{emailError}</span> : false 
+					}
+				</div>
+				<div className={'form-group datepicker-custom-wraper' + (dateError ? ' has-error' : '')}>
+					<label htmlFor="edit-date" className="control-label">Date of birth:</label>
 					<DatePicker
 						id="edit-date"
 						dateFormat={this._dateFormat}
@@ -93,12 +100,21 @@ class EntryEditor extends ClassCreateEntry {
 						showYearDropdown
 						dropdownMode="select"
 						placeholderText="Click to select a date"
+						className="form-control"
+						autoComplete="off"
 					/>
-					{ dateError ? <div>{dateError}</div> : false }
-					<br />
-					<button type="submit">Apply changes</button>
-					<br />
-					<button type="button" onClick={ () => this.comeBack() }>Come Back</button>
+					{ dateError ?
+						<span className="label label-danger">{dateError}</span> : false 
+					}
+				</div>
+				<div className="btn-group">
+					<button className="btn btn-default" type="submit">Apply changes</button>
+					<button
+						className="btn btn-default"
+						type="button"
+						onClick={ () => this.comeBack() }
+					>Come Back</button>
+				</div>
 			</form>
 		);
 	}
