@@ -5,6 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 class ClassCreateEntry extends React.Component {
 	constructor(props) {
 		super(props);
+		this._dateFormat = 'MM/DD/YYYY';
 		this._validationRules = {
 			email: {
 				presence: true,
@@ -15,12 +16,12 @@ class ClassCreateEntry extends React.Component {
 				presence: true
 			},
 			dateOfBirth: {
-				// DatePicker return valid 'moment' object or null
-				// add this: "^Select allowed date from the list"
+				datetime: {
+					format: this._dateFormat
+				},
 				presence: true
 			}
 		};
-		this._dateFormat = 'MM/DD/YYYY';
 		this.state = {
 			date: null,
 			errors: {}

@@ -25,9 +25,18 @@ class EntriesList extends React.Component {
 
 	getShowEntries(props) {
 		const currentPage = +props.match.params.page || 1;
-		return props.entries.filter((item, i) => 
+		let showEntries = props.entries.filter((item, i) => 
 			i < currentPage*this.itemsOnPage && i >= (currentPage - 1)*this.itemsOnPage
 		);
+		// let each page has the same number of rows
+		function GhostEntry() {
+			this.id = Math.random();
+			this.ghost = true;
+		}
+		while (showEntries.length % this.itemsOnPage) {
+			showEntries.push(new GhostEntry());
+		}
+		return showEntries;
 	}
 
 	handlePageChanged(newPage) {
@@ -62,9 +71,9 @@ class EntriesList extends React.Component {
 						{showEntries.map(item => 
 							<Entry
 								key={item.id}
-								{...item}
 								onDelEntry={() => this.props.handleDelEntry(item.id)}
 								onStartEdit={() => this.props.history.push(`/${item.id}`)}
+								{...item}
 							/>
 						)}
 					</tbody>

@@ -1,4 +1,5 @@
 import validate from 'validate.js';
+import moment from 'moment';
 
 import LocalStorageHelper from './LocalStorageHelper';
 
@@ -10,12 +11,17 @@ class ValidationHelper {
 				return options.message || "^Item already exists";
 			}
 		};
+		validate.extend(validate.validators.datetime, {
+			parse: (value, options) => +moment(value, options.format),
+			format: (value, options) => moment(value).format(options.format)
+		});
 	}
 
 	static _setCustomMessages() {
 		validate.validators.presence.options = { message: "^This field can't be empty" };
 		validate.validators.email.options = { message: "^Invalid email address" };
 		validate.validators.userExists.options = { message: "^Such email already exists" };
+		validate.validators.datetime.options = { message: "^Select allowed date from the list" };
 	}
 
 	static init() {

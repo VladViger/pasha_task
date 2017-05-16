@@ -3,7 +3,14 @@ import React from 'react';
 class Entry extends React.Component {
 	render() {
 		let {name, email, dateOfBirth, onClick} = this.props;
-		return (
+		return this.props.ghost ? (
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+		) : (
 			<tr onDoubleClick={this.props.onStartEdit}>
 				<td>{this.props.name}</td>
 				<td>{this.props.email}</td>

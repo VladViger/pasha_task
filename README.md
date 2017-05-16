@@ -1,14 +1,13 @@
-# "Users"
+# "Birthdays entries"
 > Simple CRUD Application
 ***
 
 [Task specification](./SPECIFICATION.md)
 
 ### Current Task List:
-- add more vilidation rules in data of Birthd field
-- to fix warning from moment date formatting in EditEntry component
 - configure webpack
 - maybe delete index.ejs
+- add project description in Readme.md
 
 ### Questions:
 - jQuery & React?

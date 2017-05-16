@@ -11,7 +11,7 @@ class EntryEditor extends ClassCreateEntry {
 			this.props.history.push('/');
 			return;
 		}
-		let currentDate = moment(this.props.dateOfBirth);
+		let currentDate = moment(this.props.dateOfBirth, this._dateFormat);
 		this.setState({ date: currentDate });
 	}
 

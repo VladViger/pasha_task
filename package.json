@@ -1,6 +1,6 @@
 {
-  "name": "users",
-  "version": "0.0.1",
+  "name": "birthdays-entries",
+  "version": "0.1.0",
   "private": true,
   "description": "Simple CRUD Application",
   "author": {
