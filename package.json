@@ -14,9 +14,9 @@
   "license": "ISC",
   "main": "webpack.config.js",
   "scripts": {
-    "build": "set NODE_ENV=production&&webpack --colors",
+    "build": "cross-env NODE_ENV=production webpack --colors",
     "devbuild": "webpack --colors",
-    "devserver": "set HOT=1&&webpack-dev-server --colors"
+    "devserver": "webpack-dev-server --colors --hot"
   },
   "devDependencies": {
     "babel": "^6.23.0",
@@ -26,6 +26,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "copy-webpack-plugin": "^4.0.1",
+    "cross-env": "^5.0.0",
     "css-loader": "^0.28.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
@@ -38,7 +39,8 @@
     "style-loader": "^0.16.1",
     "url-loader": "^0.5.8",
     "webpack": "^2.4.1",
-    "webpack-dev-server": "^2.4.2"
+    "webpack-dev-server": "^2.4.2",
+    "write-file-webpack-plugin": "^4.0.2"
   },
   "dependencies": {
     "bootstrap": "^3.3.7",

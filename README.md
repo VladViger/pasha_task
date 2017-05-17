@@ -6,11 +6,17 @@
 
 ### Current Task List:
 - configure webpack
-- maybe delete index.ejs
+- play with fonts
+- add width in table columns
+- testing in other browsers and screens
+- add 'key' in LocalStorageHelper
 - add project description in Readme.md
+- propTypes in React
+- add JSON instead localStorage data (for example)
 
 ### Questions:
 - jQuery & React?
+- #lleo_dialog in <style></style>, wtf?
 
 ***
 
