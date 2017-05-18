@@ -1,30 +1,32 @@
 import React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 
-import Entries from '../containers/VisibleEntries';
-import LogInPanel from '../containers/VisibleLogInPanel';
-import RegisterPanel from '../containers/VisibleRegisterPanel';
-import EntryCreator from '../containers/VisibleEntryCreator';
-import EntryEditor from '../containers/VisibleEntryEditor';
+import {
+	LazyEntries,
+	LazyLogInPanel,
+	LazyRegisterPanel,
+	LazyEntryCreator,
+	LazyEntryEditor
+} from '../lazyLoader/LazyLoadComponentsMaker';
 
 
 const routes = (isLoggedIn) => (
 	<div className="content">
 		{isLoggedIn ? (
 			<Switch>
-				<Route exact path="/" component={Entries} />
-				<Route exact path="/create" component={EntryCreator} />
-				<Route exact path="/:id" component={EntryEditor} />
-				<Route exact path="/pages/:page" component={Entries} />
+				<Route exact path="/" component={LazyEntries} />
+				<Route exact path="/create" component={LazyEntryCreator} />
+				<Route exact path="/:id" component={LazyEntryEditor} />
+				<Route exact path="/pages/:page" component={LazyEntries} />
 				<Redirect to="/" />
-				<Route component={Entries} />
+				<Route component={LazyEntries} />
 			</Switch>
 		) : (
 			<Switch>
-				<Route exact path="/login" component={LogInPanel} />
-				<Route exact path="/register" component={RegisterPanel} />
+				<Route exact path="/login" component={LazyLogInPanel} />
+				<Route exact path="/register" component={LazyRegisterPanel} />
 				<Redirect to="/login" />
-				<Route component={LogInPanel} />
+				<Route component={LazyLogInPanel} />
 			</Switch>
 		)}
 	</div>

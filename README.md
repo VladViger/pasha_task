@@ -11,7 +11,6 @@
 - testing in other browsers and screens
 - add 'key' in LocalStorageHelper
 - add project description in Readme.md
-- propTypes in React
 - add JSON instead localStorage data (for example)
 
 ### Questions:
