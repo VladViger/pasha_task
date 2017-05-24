@@ -16,8 +16,7 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --colors",
     "devbuild": "webpack --colors",
-    "devserver": "webpack-dev-server --colors --hot",
-    "start": "npm run build"
+    "devserver": "webpack-dev-server --colors --hot"
   },
   "devDependencies": {
     "babel": "^6.23.0",
