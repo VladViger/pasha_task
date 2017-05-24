@@ -32,8 +32,7 @@ let config = {
 	],
 
 	output: {
-		path: resolve(__dirname, (IS_EXAMPLE ? 'docs/example/' : 'public')),
-		publicPath: './',
+		path: resolve(__dirname, (IS_EXAMPLE ? 'example' : 'public')),
 		filename: (IS_HOT) ? 'js/[name].js' : 'js/[name]-[chunkhash:8].js'
 	},
 
