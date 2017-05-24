@@ -1,7 +1,8 @@
 'use strict';
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
-const options  = require('yargs').argv;
+const IS_EXAMPLE = !!process.env.EXAMPLE || false;
+const IS_HOT = !!process.env.HOT || false;
 
 const rimraf = require('rimraf');
 const { resolve } = require('path');
@@ -31,9 +32,9 @@ let config = {
 	],
 
 	output: {
-		path: resolve(__dirname, 'public'),
+		path: resolve(__dirname, (IS_EXAMPLE ? 'example' : 'public')),
 		publicPath: '/',
-		filename: (options.hot) ? 'js/[name].js' : 'js/[name]-[chunkhash:8].js'
+		filename: (IS_HOT) ? 'js/[name].js' : 'js/[name]-[chunkhash:8].js'
 	},
 
 	resolve: {
@@ -112,7 +113,7 @@ let config = {
 		}),
 		new ExtractTextPlugin({
 			filename: 'css/[name]-[contenthash:8].css',
-			disable: options.hot,
+			disable: IS_HOT,
 			allChunks: true
 		}),
 		new webpack.LoaderOptionsPlugin({
@@ -142,7 +143,7 @@ let config = {
 	devServer: {
 		host: 'localhost',
 		port: 3000,
-		hot: options.hot,
+		hot: IS_HOT,
 		inline: true,
 		contentBase: resolve(__dirname, 'public'),
 		historyApiFallback: true,
@@ -157,9 +158,10 @@ if (NODE_ENV === 'production') {
 	}));
 }
 
-if (options.hot) {
+if (IS_HOT) {
 	babelLoaderOptions.plugins.push( 'react-hot-loader/babel' );
 	config.entry.unshift( 'react-hot-loader/patch' );
+	config.plugins.push( new webpack.HotModuleReplacementPlugin() );
 	config.plugins.push( new webpack.NamedModulesPlugin() );
 	config.plugins.push( new WriteFilePlugin({ log: false }) );
 }

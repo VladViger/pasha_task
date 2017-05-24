@@ -15,8 +15,9 @@
   "main": "webpack.config.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --colors",
-    "devbuild": "webpack --colors",
-    "devserver": "webpack-dev-server --colors --hot"
+    "build:example": "cross-env NODE_ENV=production EXAMPLE=true webpack --colors",
+    "build:dev": "cross-env webpack --colors",
+    "devserver": "cross-env HOT=true webpack-dev-server --colors"
   },
   "devDependencies": {
     "babel": "^6.23.0",
