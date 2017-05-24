@@ -1,7 +1,6 @@
 'use strict';
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
-const IS_EXAMPLE = !!process.env.EXAMPLE || false;
 const IS_HOT = !!process.env.HOT || false;
 
 const rimraf = require('rimraf');
@@ -32,7 +31,8 @@ let config = {
 	],
 
 	output: {
-		path: resolve(__dirname, (IS_EXAMPLE ? 'example' : 'public')),
+		path: resolve(__dirname, 'public'),
+		publicPath: '/',
 		filename: (IS_HOT) ? 'js/[name].js' : 'js/[name]-[chunkhash:8].js'
 	},
 

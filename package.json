@@ -1,6 +1,6 @@
 {
   "name": "birthdays-entries",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "Simple CRUD Application",
   "author": {
@@ -15,7 +15,6 @@
   "main": "webpack.config.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --colors",
-    "build:example": "cross-env NODE_ENV=production EXAMPLE=true webpack --colors",
     "build:dev": "cross-env webpack --colors",
     "devserver": "cross-env HOT=true webpack-dev-server --colors"
   },
@@ -46,6 +45,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "moment": "^2.18.1",
+    "node-static": "^0.7.9",
     "react": "^15.5.4",
     "react-confirm-bootstrap": "^3.1.4",
     "react-datepicker": "^0.46.0",
