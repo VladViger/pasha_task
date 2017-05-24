@@ -38,6 +38,11 @@ export function receiveEntries() {
 	return action;
 }
 
+export function installSampleData() {
+	LS_API.installData();
+	return receiveEntries();
+}
+
 export function addEntry(newEntryData) {
 	const id = 'id' + Math.random().toString(36).substring(2);
 	const { name, email, dateOfBirth } = newEntryData;

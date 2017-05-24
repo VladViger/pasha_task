@@ -1,6 +1,8 @@
+import sampleLocalStorage from '../data/sampleLocalStorage';
+
 class LocalStorageHelper {
 	static get _address() {
-		return 'pashaTaskDB';
+		return 'pashaTaskDB:6931038182075413';
 	}
 
 	static get _data() {
@@ -74,6 +76,13 @@ class LocalStorageHelper {
 		if (!newData) return;
 		if (newData.usersData) delete newData.usersData[id];
 		if (newData.usersPass) delete newData.usersPass[id];
+		LocalStorageHelper._setData(newData);
+	}
+
+	static installData(sampleData = sampleLocalStorage) {
+		let newData = LocalStorageHelper._data;
+		Object.assign(newData.usersData, sampleData.usersData);
+		Object.assign(newData.usersPass, sampleData.usersPass);
 		LocalStorageHelper._setData(newData);
 	}
 }

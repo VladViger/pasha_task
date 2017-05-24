@@ -2,16 +2,14 @@
 > Simple CRUD Application
 ***
 
+This is a simple client-side application which is built on ReactJS using Redux architecture, routing and localStorage as data base. It developed as a test task which you can look at the link below.
+
 [Task specification](./SPECIFICATION.md)
 
-### Current Task List:
-- configure webpack
-- play with fonts
-- add width in table columns
-- testing in other browsers and screens
-- add 'key' in LocalStorageHelper
-- add project description in Readme.md
-- add JSON instead localStorage data (for example)
+### Current ToDo List:
+- configure webpack (chunks)
+- move lazyLoader files
+- add polyfill for IE (Promise)
 
 ### Questions:
 - jQuery & React?

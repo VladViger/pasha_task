@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { deleteEntry } from '../actions';
+import { deleteEntry, installSampleData } from '../actions';
 import EntriesList from '../components/EntriesList';
 
 const mapStateToProps = (state) => ({
@@ -9,7 +9,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-	handleDelEntry: deleteEntry
+	handleDelEntry: deleteEntry,
+	getExample: installSampleData
 };
 
 let VisibleEntries = withRouter(

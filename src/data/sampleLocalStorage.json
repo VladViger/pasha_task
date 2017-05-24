@@ -1,0 +1,60 @@
+{
+  "usersData": {
+    "idn1j3cl14dqc": {
+      "name": "Egor",
+      "email": "egor@example.ru",
+      "dateOfBirth": "02/02/1980"
+    },
+    "id130gcj4egzk": {
+      "name": "Colombo D.",
+      "email": "mister-d@some-mail.com",
+      "dateOfBirth": "11/08/1991"
+    },
+    "ida84ro21e0vr": {
+      "name": "Kate",
+      "email": "kiki@mimi.kz",
+      "dateOfBirth": "07/29/2004"
+    },
+    "idio8lf6zhee9": {
+      "name": "John Wayne",
+      "email": "john@wayne.ls",
+      "dateOfBirth": "04/01/1950"
+    },
+    "idj8c576fuwve": {
+      "name": "Diana",
+      "email": "dianamail@ex.com",
+      "dateOfBirth": "06/02/1977"
+    },
+    "id01qr1y98egxz": {
+      "name": "Alfa Romeo",
+      "email": "romeo@a.it",
+      "dateOfBirth": "01/01/1910"
+    },
+    "idzifmqn7svv": {
+      "name": "Marija Vjuga",
+      "email": "sdtwrn@mail.go",
+      "dateOfBirth": "05/04/2017"
+    },
+    "id81qz72qzjgv": {
+      "name": "New Name",
+      "email": "new@email.mm",
+      "dateOfBirth": "05/24/2017"
+    },
+    "idrj9upvqx0j8": {
+      "name": "Targa Florio",
+      "email": "flore-mail@examle.com",
+      "dateOfBirth": "10/09/1965"
+    },
+    "idcl15zx9zwtg": {
+      "name": "Makarena",
+      "email": "uuuuu@makarena.at",
+      "dateOfBirth": "05/04/2012"
+    },
+    "id216n1g4fedw": {
+      "name": "Create next entry",
+      "email": "and@mail.below",
+      "dateOfBirth": "01/01/1900"
+    }
+  },
+  "usersPass": {}
+}

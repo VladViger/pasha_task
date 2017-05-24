@@ -47,16 +47,22 @@ class EntriesList extends React.Component {
 		const currentPage = this.state.currentPage;
 		const showEntries = this.state.showEntries;
 		return !showEntries.length ? (
-			<p className="alert alert-info main-table-info">Currently there are no entries.</p>
+			<p className="alert alert-info main-table-info">
+				Currently there are no entries.<br />
+				If you just want to see how it works,<br />
+				<a href="#" onClick={(e) => { e.preventDefault(); this.props.getExample(); }}>
+					load the sample data.
+				</a>
+			</p>
 		) : (
 			<div className="main-table-wrapper">
 				<table className="table table-bordered table-hover main-table">
 					<thead>
 						<tr>
-							<th>Name</th>
-							<th>Email</th>
-							<th>Date of birth</th>
-							<th></th>
+							<th className="col-name">Name</th>
+							<th className="col-email">Email</th>
+							<th className="col-date">Date of birth</th>
+							<th className="col-remove"></th>
 						</tr>
 					</thead>
 					<tfoot>
