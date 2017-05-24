@@ -16,7 +16,9 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --colors",
     "build:dev": "cross-env webpack --colors",
-    "devserver": "cross-env HOT=true webpack-dev-server --colors"
+    "devserver": "cross-env HOT=true webpack-dev-server --colors",
+    "heroku-postbuild": "NODE_ENV=production webpack --colors --progress",
+    "start": "node ./index.js"
   },
   "devDependencies": {
     "babel": "^6.23.0",
