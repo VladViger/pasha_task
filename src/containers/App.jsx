@@ -53,7 +53,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
 	initEntriesList: receiveEntries,
-	logOut: logOut
+	logOut
 };
 
 let VisibleApp = withRouter(

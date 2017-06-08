@@ -62,6 +62,6 @@
   },
   "engines": {
     "node": "6.x.x",
-    "mpm": "4.x.x"
+    "npm": "4.x.x"
   }
 }

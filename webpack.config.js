@@ -3,15 +3,15 @@
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const IS_HOT = !!process.env.HOT || false;
 
-const rimraf = require('rimraf');
+const rimraf 	  = require('rimraf');
+const webpack 	  = require('webpack');
 const { resolve } = require('path');
-const webpack = require('webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const WriteFilePlugin   = require('write-file-webpack-plugin');
-const autoprefixer = require('autoprefixer');
+const WriteFilePlugin 	= require('write-file-webpack-plugin');
+const autoprefixer 		= require('autoprefixer');
 
 let babelLoaderOptions = {
 	presets: [

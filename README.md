@@ -15,6 +15,7 @@ This is a simple client-side application which is built on ReactJS using Redux a
 - move lazyLoader files
 - add polyfill for IE (Promise)
 - optimize importing libs (moment, etc.)
+- add in server redirect from 404 to main page
 - refresh the example
 
 ### Questions:

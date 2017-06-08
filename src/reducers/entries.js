@@ -1,13 +1,12 @@
 import { RECEIVE_ENTRIES, ADD_ENTRY, EDIT_ENTRY, DEL_ENTRY } from '../actions';
 
-function createEntrie(action) {
-	let newEntie = {
+function getEntrie(action) {
+	return {
 		id: action.id,
 		name: action.name,
 		email: action.email,
 		dateOfBirth: action.dateOfBirth
-	};
-	return newEntie;
+	}
 }
 
 function entries(state = [], action) {
@@ -17,11 +16,11 @@ function entries(state = [], action) {
 		case ADD_ENTRY:
 			return [
 				...state,
-				createEntrie(action)
+				getEntrie(action)
 			];
 		case EDIT_ENTRY:
 			return state.map(item => 
-				(item.id === action.id) ? createEntrie(action) : item
+				(item.id === action.id) ? getEntrie(action) : item
 			);
 		case DEL_ENTRY:
 			return state.filter( item => item.id !== action.id );

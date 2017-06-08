@@ -42,12 +42,15 @@ class RegisterPanel extends ClassCreateEntry {
 
 		const validationErrors = ValidationHelper.validate(newEntry, this._validationRules);
 
-		if (!validationErrors) {
+		if (validationErrors) {
+			this.setState({ errors: validationErrors });
+		} else {
 			this.props.handleRegister(newEntry);
-			this.setState({ isSent: true });
+			this.setState({
+				isSent: true,
+				errors: {}
+			});
 		}
-		validationErrors ? 
-			this.setState({ errors: validationErrors }) : this.setState({ errors: {} });
 	}
 
 	render() {
